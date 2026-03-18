@@ -36,7 +36,7 @@ XeLatex->biber->XeLatex->XeLatex。
 
 1. 在 Github 页面的 Release 部分下载最新的打包文件，解压后将您的内容分别填写到对应的部分并运行编译。
 
-2. 基本信息填写：在cover.tex文件中，找到 `\title`、`\author`、`\date`、`\studentid`、`\supervisor` 等命令，填写你的论文题目、姓名、学号、导师等信息。
+2. 基本信息填写：在cover.tex文件中，找到 `\ctitle`、`\cauthor`、`\date`、`\studentid`、`\supervisor` 等命令，填写你的论文题目、姓名、学号、导师等信息。
 
 3. 撰写章节：在 contents/ 文件夹下对应的 .tex 文件中撰写各个章节的内容。
 
@@ -59,6 +59,6 @@ XeLatex->biber->XeLatex->XeLatex。
 # 致谢
 感谢所有 LaTeX 宏包的开发者和维护者。
 
-在制作这份模板的时候对`hyzhangtjnk/TJU-2024-Graduation-Thesis`项目和`haimingz/tjuthesis`，感谢这两位作者的开源。
+在制作这份模板的时候对`hyzhangtjnk/TJU-2024-Graduation-Thesis`项目和`haimingz/tjuthesis`进行了参考和学习，感谢这两位作者的开源。
 
 祝各位同学毕业顺利，论文成功！

@@ -1,10 +1,12 @@
+\makeatletter
 \fancypagestyle{plain}{
     \fancyhf{} % 清除所有页眉页脚重新设置
-    \fancyhead[C]{\songti\zihao{5}天津大学20XX届本科生毕业论文} % 页眉，宋体五号
+    \fancyhead[C]{\songti\zihao{5}\@cheading} % 页眉，宋体五号
     \fancyfoot[C]{\songti\zihao{-5} \thepage} % 页脚，宋体小五号，\thepage 代指页码
     \renewcommand{\headrulewidth}{0.5bp} % 页眉横线粗细
     \renewcommand{\footrulewidth}{0bp} % 页脚横线粗细
 }
+\makeatother
 
 \fancypagestyle{noheader}{
     \fancyhf{} % 清除所有页眉页脚重新设置
@@ -77,8 +79,6 @@
 \renewcommand{\tablename}{表}                                     % 插表题头
 \renewcommand{\figurename}{图}                                    % 插图题头
 \renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}       % 使图编号为 7-1 的格式 %\protect{~}
-% \renewcommand{\thesubfigure}{\alph{subfigure})}                   % 使子图编号为 a) 的格式
-% \renewcommand{\thesubtable}{(\alph{subtable})}                    % 使子表编号为 (a) 的格式
 \renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}         % 使表编号为 7-1 的格式
 \renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}   % 使公式编号为 7-1 的格式
 % \newcommand{\ud}{\mathrm{d}} % 定义微分符号的命令，使用 upright 字体
