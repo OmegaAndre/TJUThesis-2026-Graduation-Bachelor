@@ -21,13 +21,13 @@
 \usepackage[style=gb7714-2015]{biblatex}
 
 \setmainfont{Times New Roman} 
-\setsansfont{SimSun}[AutoFakeBold={3.17}]
+\setsansfont{SimSun} %邪修大法修改参考文件序号为宋体之定义无衬线字体为宋体
 
 \addbibresource{reference.bib}
 
 \DeclareFieldFormat{labelnumberwidth}{
   {\sffamily\mkbibbrackets{#1}}%  使用自定义的无衬线字体命令
-}
+} %邪修大法修改参考文件序号为宋体之使用无衬线字体命令
 
 % 定义一个新的分隔符：使用 \quad（1em 空格）
 \DeclareCaptionLabelSeparator{quadspace}{\quad}

@@ -91,3 +91,94 @@
     \label{fig:\thefigure}
   \end{figure}
 }
+
+\makeatletter
+
+\newlength{\@title@width}
+
+\def\ctitle#1{\def\@ctitle{#1}}\def\@ctitle{}
+\def\caffil#1{\def\@caffil{#1}}\def\@caffil{}
+\def\csubject#1{\def\@csubject{#1}}\def\@csubject{}
+\def\cgrade#1{\def\@cgrade{#1}}\def\@cgrade{}
+\def\cauthor#1{\def\@cauthor{#1}}\def\@cauthor{}
+\def\cnumber#1{\def\@cnumber{#1}}\def\@cnumber{}
+\def\csupervisor#1{\def\@csupervisor{#1}}\def\@csupervisor{}
+\def\cheading#1{\def\@cheading{#1}}\def\@cheading{}
+
+\def\makecover{
+    \begin{titlepage}
+        \thispagestyle{empty}
+        \vspace*{31.5pt}
+        \begin{center}
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.4\textwidth]{figures/tjuname.eps}
+            \end{figure}
+            
+            \vspace*{21pt}
+            \zihao{2}{\heiti\textbf{本科生毕业论文}}
+            \vspace*{52.5pt}
+
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.3\textwidth]{figures/tjulogo.eps}
+            \end{figure}
+
+            \vspace*{5pt}
+            \zihao{3}{\heiti\textbf{题目：\@ctitle}}
+            \vspace*{16pt}
+
+            \vspace*{24pt}
+            \renewcommand\arraystretch{1.5}
+
+            {\zihao{3}\songti{
+                \textbf{
+                    \begin{tabular}{lc} 
+                        学\qquad 院 &  \underline{\makebox[\@title@width][c]{\@caffil}}     \\
+                        专\qquad 业 &  \underline{\makebox[\@title@width][c]{\@csubject}}   \\
+                        年\qquad 级 &  \underline{\makebox[\@title@width][c]{\@cgrade}}     \\
+                        姓\qquad 名 &  \underline{\makebox[\@title@width][c]{\@cauthor}}    \\
+                        学\qquad 号 &  \underline{\makebox[\@title@width][c]{\@cnumber}}    \\
+                        指导教师 &  \underline{\makebox[\@title@width][c]{\@csupervisor}}   \\
+                    \end{tabular}
+                    }
+                }
+            }
+            \vspace*{21pt}
+
+        \end{center}
+    \end{titlepage}
+}
+
+\def\cabstractcn#1{\def\@cabstractcn{#1}}\def\@cabstractcn{}
+\def\cabstracten#1{\def\@cabstracten{#1}}\def\@cabstracten{}
+\def\ckeywordcn#1{\def\@ckeywordcn{#1}}\def\@ckeywordcn{}
+\def\ckeyworden#1{\def\@ckeyworden{#1}}\def\@ckeyworden{}
+
+\def\makeabstract{
+    % 中文摘要页
+
+    \chapter*{\zihao{2}\textbf{\songti 摘 \qquad 要}}
+    \thispagestyle{noheader}
+
+    \@cabstractcn
+
+    \bigskip % 空一行
+
+    \noindent {\songti\zihao{4}\textbf{关键词：}} 
+    \@ckeywordcn
+
+    % 英文摘要页
+
+    \chapter*{\zihao{2}\textbf{ABSTRACT}}
+    \thispagestyle{noheader}
+
+    \@cabstracten
+
+    \bigskip 
+    \noindent {\zihao{4}\textbf{KEY WORDS:} }
+    \@ckeyworden
+    % 很奇怪这里用的是中文全角分号
+}
+
+\makeatother

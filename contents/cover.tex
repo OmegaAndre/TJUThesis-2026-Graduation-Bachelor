@@ -1,46 +1,14 @@
 \makeatletter
-
-\begin{titlepage}
-    \thispagestyle{empty}
-    \vspace*{31.5pt}
-    \begin{center}
-        \begin{figure}[h]
-            \centering
-            \includegraphics[width=0.4\textwidth]{figures/tjuname.eps}
-        \end{figure}
-        
-        \vspace*{21pt}
-        \zihao{2}{\heiti\textbf{本科生毕业论文}}
-        \vspace*{52.5pt}
-
-        \begin{figure}[h]
-            \centering
-            \includegraphics[width=0.3\textwidth]{figures/tjulogo.eps}
-        \end{figure}
-
-        \vspace*{5pt}
-        \zihao{3}{\heiti\textbf{题目：\@ctitle}}
-        \vspace*{16pt}
-
-        \vspace*{24pt}
-        \renewcommand\arraystretch{1.5}
-
-        {\zihao{3}\songti{
-            \textbf{
-                \begin{tabular}{lc} 
-                    学\qquad 院 &  \underline{\makebox[\@title@width][c]{\@caffil}}     \\
-                    专\qquad 业 &  \underline{\makebox[\@title@width][c]{\@csubject}}   \\
-                    年\qquad 级 &  \underline{\makebox[\@title@width][c]{\@cgrade}}     \\
-                    姓\qquad 名 &  \underline{\makebox[\@title@width][c]{\@cauthor}}    \\
-                    学\qquad 号 &  \underline{\makebox[\@title@width][c]{\@cnumber}}    \\
-                    指导教师 &  \underline{\makebox[\@title@width][c]{\@csupervisor}}   \\
-                \end{tabular}
-                }
-            }
-        }
-        \vspace*{21pt}
-
-    \end{center}
-\end{titlepage}
-
+\setlength{\@title@width}{8cm} %这里调整信息下方横线的长度
 \makeatother
+
+\cheading{天津大学 2026 届本科生毕业论文}       % 设置正文的页眉，需要填上对应的毕业年份
+\ctitle{[此处输入论文题目（25个字之内）]}       % 封面用论文标题，自己可手动断行
+\caffil{[此处输入学院全称]}                    % 学院名称
+\csubject{[此处输入专业全称]}                  % 专业名称
+\cgrade{[此处输入学生年级]}                    % 年级
+\cauthor{[此处输入学生姓名]}                   % 学生姓名
+\cnumber{[此处输入学生学号]}                   % 学生学号
+\csupervisor{[输入指导教师姓名，可填多个]}      % 导师姓名
+
+\makecover
