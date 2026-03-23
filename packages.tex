@@ -3,7 +3,6 @@
             top=2.75cm,bottom=2.54cm,
             footskip=7.9mm,
             headheight=5mm,headsep=7.5mm]{geometry}
-% \usepackage{showframe}
 \usepackage{fancyhdr}
 \usepackage{titletoc} % 用于设置目录样式的包
 \usepackage{graphicx} % 支持插图处理
@@ -12,13 +11,15 @@
 \usepackage{booktabs} % 用于绘制三线表的横线
 \usepackage{amsmath} % 基础数学包
 \usepackage{amsfonts} % 支持公式中使用特殊字体
-% \usepackage{mathtools} % 基础数学包基础上增加额外命令
-% \usepackage{tabularx} % 用于绘制表格
-% \usepackage{multirow} % 支持在表格中横跨多列
 \usepackage[hidelinks]{hyperref} % 将交叉引用设置为超链接
 \usepackage{newtxmath}
 \usepackage{caption}
+\usepackage{xcolor}
+\usepackage{listings}
 \usepackage[style=gb7714-2015]{biblatex}
+% \usepackage{mathtools} % 基础数学包基础上增加额外命令
+% \usepackage{tabularx} % 用于绘制表格
+% \usepackage{multirow} % 支持在表格中横跨多列
 
 \setmainfont{Times New Roman} 
 \setsansfont{SimSun} %邪修大法修改参考文件序号为宋体之定义无衬线字体为宋体
@@ -42,4 +43,27 @@
 \captionsetup[table]{
   font=small,
   labelsep=quadspace
+}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=8pt,
+    frame=single,
+    framerule=0.5pt,
+    breaklines=true,
+    breakatwhitespace=false,
+    tabsize=4,
+    showstringspaces=false,
+    showspaces=false,
+    showtabs=false,
+    columns=flexible,
+    keepspaces=true,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!50!black},
+    stringstyle=\color{red!60!black},
+    backgroundcolor=\color{gray!5},
+    captionpos=b
 }
