@@ -1,4 +1,8 @@
-\def\usewhat{xelatex}
+\newif\if@songnumber
+
+\DeclareOption{songnumber}{\@songnumbertrue}
+\ProcessOptions*
+
 \ProvidesClass{tjuthesis-Bachelor}
 \LoadClass[12pt,openany,oneside]{ctexbook}
 
@@ -22,63 +26,24 @@
 \RequirePackage{listings}
 \RequirePackage[style=gb7714-2015]{biblatex}
 % \RequirePackage{mathtools} % 基础数学包基础上增加额外命令
-% \RequirePackage{tabularx} % 用于绘制表格
+% \RequirePackage{tabularx} % 表格自动换行
 % \RequirePackage{multirow} % 支持在表格中横跨多列
 
 \setmainfont{Times New Roman} 
+
+\if@songnumber
 \setsansfont{SimSun} %邪修大法修改参考文件序号为宋体之定义无衬线字体为宋体
-
-\addbibresource{reference.bib}
-
 \DeclareFieldFormat{labelnumberwidth}{
-  {\sffamily\mkbibbrackets{#1}}%  使用自定义的无衬线字体命令
+{\sffamily\mkbibbrackets{#1}}%  使用自定义的无衬线字体命令
 } %邪修大法修改参考文件序号为宋体之使用无衬线字体命令
-
-% 定义一个新的分隔符：使用 \quad（1em 空格）
-\DeclareCaptionLabelSeparator{quadspace}{\quad}
-
-% 设置图注：字体为 small，分隔符用刚刚定义的 quadspace
-\captionsetup[figure]{
-  font=small,
-  labelsep=quadspace
-}
-
-% 同样设置表格注
-\captionsetup[table]{
-  font=small,
-  labelsep=quadspace
-}
-
-\lstset{
-    basicstyle=\ttfamily\small,
-    numbers=left,
-    numberstyle=\tiny,
-    stepnumber=1,
-    numbersep=8pt,
-    frame=single,
-    framerule=0.5pt,
-    breaklines=true,
-    breakatwhitespace=false,
-    tabsize=4,
-    showstringspaces=false,
-    showspaces=false,
-    showtabs=false,
-    columns=flexible,
-    keepspaces=true,
-    keywordstyle=\color{blue},
-    commentstyle=\color{green!50!black},
-    stringstyle=\color{red!60!black},
-    backgroundcolor=\color{gray!5},
-    captionpos=b
-}
+\fi
 
 % 宋体、黑体伪粗体
-\setCJKfamilyfont{son}[AutoFakeBold={3.17}]{SimSun} 
+\setCJKfamilyfont{son}[AutoFakeBold={2}]{SimSun} 
 \renewcommand*{\songti}{\CJKfamily{son}}
-\setCJKfamilyfont{hei}[AutoFakeBold={3.17}]{SimHei}
+\setCJKfamilyfont{hei}[AutoFakeBold={2}]{SimHei}
 \renewcommand*{\heiti}{\CJKfamily{hei}}
 
-\makeatletter
 \fancypagestyle{plain}{
     \fancyhf{} % 清除所有页眉页脚重新设置
     \fancyhead[C]{\songti\zihao{5}\@cheading} % 页眉，宋体五号
@@ -86,7 +51,6 @@
     \renewcommand{\headrulewidth}{0.5bp} % 页眉横线粗细
     \renewcommand{\footrulewidth}{0bp} % 页脚横线粗细
 }
-\makeatother
 
 \fancypagestyle{noheader}{
     \fancyhf{} % 清除所有页眉页脚重新设置
@@ -95,23 +59,20 @@
     \renewcommand{\footrulewidth}{0bp} % 页脚横线粗细
 }
 
-\makeatletter
-
-\renewcommand\frontmatter{
+\renewcommand{\frontmatter}{
     \@mainmatterfalse
     \clearpage
     \pagestyle{noheader} % 使用页眉页脚样式 noheader
     \pagenumbering{Roman} % 大写罗马数字页码（会重置页码）
     \setlength{\baselineskip}{20bp plus 2bp minus 2bp} % 设置弹性行高为 20±2bp （optional）
 } 
-\renewcommand\mainmatter{
+\renewcommand{\mainmatter}{
     \@mainmattertrue
     \clearpage
     \pagestyle{plain} % 使用页眉页脚样式 plain 
     \pagenumbering{arabic} % 使用阿拉伯数字页码（会重置页码）
 } 
 
-\makeatother
 
 \ctexset{
     contentsname={目\quad 录}, % 目录的标题 
@@ -156,6 +117,21 @@
     {\thecontentslabel\quad}{}
     {\hspace{.5em}\titlerule*[5bp]{.}\zihao{-4}\contentspage}
 
+% 定义一个新的分隔符：使用 \quad（1em 空格）
+\DeclareCaptionLabelSeparator{quadspace}{\quad}
+
+% 设置图注：字体为 small，分隔符用刚刚定义的 quadspace
+\captionsetup[figure]{
+  font=small,
+  labelsep=quadspace
+}
+
+% 同样设置表格注
+\captionsetup[table]{
+  font=small,
+  labelsep=quadspace
+}
+
 \renewcommand{\tablename}{表}                                     % 插表题头
 \renewcommand{\figurename}{图}                                    % 插图题头
 \renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}       % 使图编号为 7-1 的格式 %\protect{~}
@@ -172,75 +148,84 @@
   \end{figure}
 }
 
-\makeatletter
+\addbibresource{reference.bib}
 
-\newlength{\@title@width}
+\lstset{
+    basicstyle=\ttfamily\small,
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=8pt,
+    frame=single,
+    framerule=0.5pt,
+    breaklines=true,
+    breakatwhitespace=false,
+    tabsize=4,
+    showstringspaces=false,
+    showspaces=false,
+    showtabs=false,
+    columns=flexible,
+    keepspaces=true,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!50!black},
+    stringstyle=\color{red!60!black},
+    backgroundcolor=\color{gray!5},
+    captionpos=b
+}
 
-\def\ctitle#1{\def\@ctitle{#1}}\def\@ctitle{}
-\def\caffil#1{\def\@caffil{#1}}\def\@caffil{}
-\def\csubject#1{\def\@csubject{#1}}\def\@csubject{}
-\def\cgrade#1{\def\@cgrade{#1}}\def\@cgrade{}
-\def\cauthor#1{\def\@cauthor{#1}}\def\@cauthor{}
-\def\cnumber#1{\def\@cnumber{#1}}\def\@cnumber{}
-\def\csupervisor#1{\def\@csupervisor{#1}}\def\@csupervisor{}
-\def\cheading#1{\def\@cheading{#1}}\def\@cheading{}
+\newlength{\@info@width}
+\setlength{\@info@width}{8cm} % 默认值
+\newcommand{\infowidth}[1]{\setlength{\@info@width}{#1}}
 
-\def\makecover{
+\newcommand{\ctitle}[1]{\gdef\@ctitle{#1}}\def\@ctitle{}
+\newcommand{\caffil}[1]{\gdef\@caffil{#1}}\def\@caffil{}
+\newcommand{\csubject}[1]{\gdef\@csubject{#1}}\def\@csubject{}
+\newcommand{\cgrade}[1]{\gdef\@cgrade{#1}}\def\@cgrade{}
+\newcommand{\cauthor}[1]{\gdef\@cauthor{#1}}\def\@cauthor{}
+\newcommand{\cnumber}[1]{\gdef\@cnumber{#1}}\def\@cnumber{}
+\newcommand{\csupervisor}[1]{\gdef\@csupervisor{#1}}\def\@csupervisor{}
+\newcommand{\cheading}[1]{\gdef\@cheading{#1}}\def\@cheading{}
+
+\newcommand{\cabstractcn}[1]{\gdef\@cabstractcn{#1}}\def\@cabstractcn{}
+\newcommand{\cabstracten}[1]{\gdef\@cabstracten{#1}}\def\@cabstracten{}
+\newcommand{\ckeywordcn}[1]{\gdef\@ckeywordcn{#1}}\def\@ckeywordcn{}
+\newcommand{\ckeyworden}[1]{\gdef\@ckeyworden{#1}}\def\@ckeyworden{}
+
+\newcommand{\makecover}{
     \begin{titlepage}
         \thispagestyle{empty}
-        \vspace*{31.5pt}
-        \begin{center}
-            \begin{figure}[h]
-                \centering
-                \includegraphics[width=0.4\textwidth]{figures/tjuname.eps}
-            \end{figure}
-            
-            \vspace*{21pt}
-            \zihao{2}{\heiti\textbf{本科生毕业论文}}
-            \vspace*{52.5pt}
+        \centering
+        \includegraphics[width=0.4\textwidth]{figures/tjuname.eps}
+        
+        \vspace{21pt}
+        \zihao{2}{\heiti\textbf{本科生毕业论文}}
+        \vfill
+        \includegraphics[width=0.4\textwidth]{figures/tjulogo.eps}
 
-            \begin{figure}[h]
-                \centering
-                \includegraphics[width=0.3\textwidth]{figures/tjulogo.eps}
-            \end{figure}
+        \vspace{20pt}
+        \zihao{3}{\heiti\textbf{题目：\@ctitle}}
 
-            \vspace*{5pt}
-            \zihao{3}{\heiti\textbf{题目：\@ctitle}}
-            \vspace*{16pt}
-
-            \vspace*{24pt}
-            \renewcommand\arraystretch{1.5}
-
-            {\zihao{3}\songti{
-                \textbf{
-                    \begin{tabular}{lc} 
-                        学\qquad 院 &  \underline{\makebox[\@title@width][c]{\@caffil}}     \\
-                        专\qquad 业 &  \underline{\makebox[\@title@width][c]{\@csubject}}   \\
-                        年\qquad 级 &  \underline{\makebox[\@title@width][c]{\@cgrade}}     \\
-                        姓\qquad 名 &  \underline{\makebox[\@title@width][c]{\@cauthor}}    \\
-                        学\qquad 号 &  \underline{\makebox[\@title@width][c]{\@cnumber}}    \\
-                        指导教师 &  \underline{\makebox[\@title@width][c]{\@csupervisor}}   \\
-                    \end{tabular}
-                    }
-                }
+        \vspace{30pt}
+        \renewcommand{\arraystretch}{1.5}
+        {\zihao{3}\songti\textbf{
+            \begin{tabular}{lc} 
+                学\qquad 院 &  \underline{\makebox[\@info@width][c]{\@caffil}}     \\
+                专\qquad 业 &  \underline{\makebox[\@info@width][c]{\@csubject}}   \\
+                年\qquad 级 &  \underline{\makebox[\@info@width][c]{\@cgrade}}     \\
+                姓\qquad 名 &  \underline{\makebox[\@info@width][c]{\@cauthor}}    \\
+                学\qquad 号 &  \underline{\makebox[\@info@width][c]{\@cnumber}}    \\
+                指导教师 &  \underline{\makebox[\@info@width][c]{\@csupervisor}}   \\
+            \end{tabular}
             }
-            \vspace*{21pt}
-
-        \end{center}
+        }
+        \vspace{1cm}
     \end{titlepage}
 }
 
-\def\cabstractcn#1{\def\@cabstractcn{#1}}\def\@cabstractcn{}
-\def\cabstracten#1{\def\@cabstracten{#1}}\def\@cabstracten{}
-\def\ckeywordcn#1{\def\@ckeywordcn{#1}}\def\@ckeywordcn{}
-\def\ckeyworden#1{\def\@ckeyworden{#1}}\def\@ckeyworden{}
-
-\def\makeabstract{
+\newcommand{\makeabstract}{
     % 中文摘要页
-
     \chapter*{\zihao{2}\textbf{\songti 摘 \qquad 要}}
     \thispagestyle{noheader}
-
     \@cabstractcn
 
     \bigskip % 空一行
@@ -249,16 +234,13 @@
     \@ckeywordcn
 
     % 英文摘要页
-
     \chapter*{\zihao{2}\textbf{ABSTRACT}}
     \thispagestyle{noheader}
-
     \@cabstracten
 
     \bigskip 
+
     \noindent {\zihao{4}\textbf{KEY WORDS:} }
     \@ckeyworden
-    % 很奇怪这里用的是中文全角分号
 }
 
-\makeatother
