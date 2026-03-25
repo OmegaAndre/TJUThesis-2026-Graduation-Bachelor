@@ -1,33 +1,33 @@
-\documentclass[songnumber]{tjuthesis-Bachelor}
+\documentclass[songnumber]{tjuthesis-Bachelor}  %通过是否传入参数songnumber来控制是否使用宋体数字作为参考文献序号
 
 \begin{document}
 
-\include{contents/introduction}
+\include{contents/introduction} %封面及摘要填写处
 
-\makecover
+\makecover  %生成封面页
 
 \includepdf{独创性声明.pdf}
 
 \frontmatter
 
-\makeabstract
+\makeabstract   %生成摘要页
 
-\tableofcontents  % 自动生成目录
+\tableofcontents    % 自动生成目录
 
 \mainmatter
 
-\include{contents/chapter1}
+\include{contents/chapter1} %第一章内容
 
-\include{contents/chapter2}
+\include{contents/chapter2} %第二章内容
 
-\include{contents/chapter3}
+\include{contents/chapter3} %第三章内容
 
 \backmatter
 
-\printbibliography[heading=bibintoc]
+\printbibliography[heading=bibintoc]    %生成参考文献页，并将其加入目录
 
-\include{contents/appendix}
+\include{contents/appendix} %附录内容
 
-\include{contents/acknowledgements}
+\include{contents/acknowledgements} %致谢内容
 
 \end{document}

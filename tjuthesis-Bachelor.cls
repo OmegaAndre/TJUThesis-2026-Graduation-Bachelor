@@ -12,30 +12,30 @@
             footskip=7.9mm,
             headheight=5mm,headsep=7.5mm]{geometry}
 \RequirePackage{fancyhdr}
-\RequirePackage{titletoc} % 用于设置目录样式的包
-\RequirePackage{graphicx} % 支持插图处理
+\RequirePackage{titletoc}   % 用于设置目录样式的包
+\RequirePackage{graphicx}   % 支持插图处理
 \RequirePackage{pdfpages}
 \RequirePackage{pifont}
-\RequirePackage{booktabs} % 用于绘制三线表的横线
-\RequirePackage{amsmath} % 基础数学包
-\RequirePackage{amsfonts} % 支持公式中使用特殊字体
-\RequirePackage[hidelinks]{hyperref} % 将交叉引用设置为超链接
+\RequirePackage{booktabs}   % 用于绘制三线表的横线
+\RequirePackage{amsmath}    % 基础数学包
+\RequirePackage{amsfonts}   % 支持公式中使用特殊字体
+\RequirePackage[hidelinks]{hyperref}    % 将交叉引用设置为超链接
 \RequirePackage{newtxmath}
 \RequirePackage{caption}
 \RequirePackage{xcolor}
 \RequirePackage{listings}
 \RequirePackage[style=gb7714-2015]{biblatex}
-% \RequirePackage{mathtools} % 基础数学包基础上增加额外命令
+% \RequirePackage{mathtools}    % 基础数学包基础上增加额外命令
 % \RequirePackage{tabularx} % 表格自动换行
 % \RequirePackage{multirow} % 支持在表格中横跨多列
 
 \setmainfont{Times New Roman} 
 
 \if@songnumber
-\setsansfont{SimSun} %邪修大法修改参考文件序号为宋体之定义无衬线字体为宋体
-\DeclareFieldFormat{labelnumberwidth}{
-{\sffamily\mkbibbrackets{#1}}%  使用自定义的无衬线字体命令
-} %邪修大法修改参考文件序号为宋体之使用无衬线字体命令
+    \setsansfont{SimSun} %邪修大法修改参考文件序号为宋体之定义无衬线字体为宋体
+    \DeclareFieldFormat{labelnumberwidth}{
+    {\sffamily\mkbibbrackets{#1}}%  使用自定义的无衬线字体命令
+    } %邪修大法修改参考文件序号为宋体之使用无衬线字体命令
 \fi
 
 % 宋体、黑体伪粗体
@@ -45,74 +45,73 @@
 \renewcommand*{\heiti}{\CJKfamily{hei}}
 
 \fancypagestyle{plain}{
-    \fancyhf{} % 清除所有页眉页脚重新设置
-    \fancyhead[C]{\songti\zihao{5}\@cheading} % 页眉，宋体五号
-    \fancyfoot[C]{\songti\zihao{-5} \thepage} % 页脚，宋体小五号，\thepage 代指页码
-    \renewcommand{\headrulewidth}{0.5bp} % 页眉横线粗细
-    \renewcommand{\footrulewidth}{0bp} % 页脚横线粗细
+    \fancyhf{}  % 清除所有页眉页脚重新设置
+    \fancyhead[C]{\songti\zihao{5}\@cheading}   % 页眉，宋体五号
+    \fancyfoot[C]{\songti\zihao{-5}\thepage}    % 页脚，宋体小五号，\thepage 代指页码
+    \renewcommand{\headrulewidth}{0.5bp}    % 页眉横线粗细
+    \renewcommand{\footrulewidth}{0bp}      % 页脚横线粗细
 }
 
 \fancypagestyle{noheader}{
-    \fancyhf{} % 清除所有页眉页脚重新设置
-    \fancyfoot[C]{\songti\zihao{-5} \thepage} % 页脚，宋体小五号，\thepage 代指页码
-    \renewcommand{\headrulewidth}{0bp} % 页眉横线粗细
-    \renewcommand{\footrulewidth}{0bp} % 页脚横线粗细
+    \fancyhf{}  % 清除所有页眉页脚重新设置
+    \fancyfoot[C]{\songti\zihao{-5} \thepage}   % 页脚，宋体小五号，\thepage 代指页码
+    \renewcommand{\headrulewidth}{0bp}  % 页眉横线粗细
+    \renewcommand{\footrulewidth}{0bp}  % 页脚横线粗细
 }
 
 \renewcommand{\frontmatter}{
     \@mainmatterfalse
     \clearpage
-    \pagestyle{noheader} % 使用页眉页脚样式 noheader
-    \pagenumbering{Roman} % 大写罗马数字页码（会重置页码）
-    \setlength{\baselineskip}{20bp plus 2bp minus 2bp} % 设置弹性行高为 20±2bp （optional）
+    \pagestyle{noheader}    % 使用页眉页脚样式 noheader
+    \pagenumbering{Roman}   % 大写罗马数字页码（会重置页码）
+    \setlength{\baselineskip}{20bp plus 2bp minus 2bp}  % 设置弹性行高为 20±2bp （optional）
 } 
 \renewcommand{\mainmatter}{
     \@mainmattertrue
     \clearpage
-    \pagestyle{plain} % 使用页眉页脚样式 plain 
-    \pagenumbering{arabic} % 使用阿拉伯数字页码（会重置页码）
+    \pagestyle{plain}   % 使用页眉页脚样式 plain 
+    \pagenumbering{arabic}  % 使用阿拉伯数字页码（会重置页码）
 } 
 
-
 \ctexset{
-    contentsname={目\quad 录}, % 目录的标题 
-    secnumdepth=3, % 标题编号深度
+    contentsname={目\quad 录},  % 目录的标题 
+    secnumdepth=3,  % 标题编号深度
     chapter={
-        format={\centering\zihao{-3}\heiti},   % 小三，黑体，居中
+        format={\centering\zihao{-3}\heiti},    % 小三，黑体，居中
         number={\chinese{chapter}}, % 章节编号黑体中文数字
         name={第,章},   % 章前缀
         aftername=\quad, 
-        beforeskip=30bp, % 段前间距 （规定 30~36 bp 之间）
-        afterskip=30bp, % 段后间距 （规定 30~36 bp 之间）
+        beforeskip=30bp,    % 段前间距 （规定 30~36 bp 之间）
+        afterskip=30bp,     % 段后间距 （规定 30~36 bp 之间）
     },
     section={
-        format={\zihao{4}\heiti}, % 四号黑体
-        beforeskip=20bp, % 段前间距 （规定 18~24 bp 之间）
-        afterskip=20bp, % 段后间距 （规定 18~24 bp 之间）
-        aftername=\quad, % 编号与标题之间空格
+        format={\zihao{4}\heiti},   % 四号黑体
+        beforeskip=20bp,    % 段前间距 （规定 18~24 bp 之间）
+        afterskip=20bp,     % 段后间距 （规定 18~24 bp 之间）
+        aftername=\quad,    % 编号与标题之间空格
     },
     subsection={
-        format={\zihao{4}\heiti}, % 四号黑体
-        beforeskip=12bp, % 段前间距 （规定 12~15 bp 之间）
-        afterskip=12bp, % 段后间距 （规定 12~15 bp 之间）
+        format={\zihao{4}\heiti},   % 四号黑体
+        beforeskip=12bp,    % 段前间距 （规定 12~15 bp 之间）
+        afterskip=12bp,     % 段后间距 （规定 12~15 bp 之间）
         aftername=\quad,
     }
 }
 
-\addtocontents{toc}{\protect\thispagestyle{noheader}} % 设置目录页的页眉页脚样式为 noheader 
-\setcounter{tocdepth}{2} % 设置 tocdepth 目录深度 （2 = subsection，即三级标题）
+\addtocontents{toc}{\protect\thispagestyle{noheader}}   % 设置目录页的页眉页脚样式为 noheader 
+\setcounter{tocdepth}{2}    % 设置 tocdepth 目录深度 （2 = subsection，即三级标题）
 \titlecontents{chapter}
-    [0em] % 缩进为 0em = 0 字符
+    [0em]   % 缩进为 0em = 0 字符
     {\heiti\zihao{-4}}
     {\thecontentslabel\quad}{}
     {\hspace{.5em}\titlerule*[5bp]{.}\zihao{-4}\contentspage} %
 \titlecontents{section}
-    [2em] % 缩进为 2em = 4 字符
+    [2em]   % 缩进为 2em = 4 字符
     {\zihao{-4}}
     {\thecontentslabel\quad}{}
     {\hspace{.5em}\titlerule*[5bp]{.}\zihao{-4}\contentspage}
 \titlecontents{subsection}
-    [4em] % 缩进为 4em = 4 字符
+    [4em]   % 缩进为 4em = 4 字符
     {\zihao{-4}}
     {\thecontentslabel\quad}{}
     {\hspace{.5em}\titlerule*[5bp]{.}\zihao{-4}\contentspage}
@@ -121,16 +120,10 @@
 \DeclareCaptionLabelSeparator{quadspace}{\quad}
 
 % 设置图注：字体为 small，分隔符用刚刚定义的 quadspace
-\captionsetup[figure]{
-  font=small,
-  labelsep=quadspace
-}
+\captionsetup[figure]{font=small,labelsep=quadspace}
 
 % 同样设置表格注
-\captionsetup[table]{
-  font=small,
-  labelsep=quadspace
-}
+\captionsetup[table]{font=small,labelsep=quadspace}
 
 \renewcommand{\tablename}{表}                                     % 插表题头
 \renewcommand{\figurename}{图}                                    % 插图题头
@@ -243,4 +236,3 @@
     \noindent {\zihao{4}\textbf{KEY WORDS:} }
     \@ckeyworden
 }
-
