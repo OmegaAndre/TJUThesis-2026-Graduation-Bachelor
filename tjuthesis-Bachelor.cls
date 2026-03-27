@@ -236,3 +236,19 @@
     \noindent {\zihao{4}\textbf{KEY WORDS:} }
     \@ckeyworden
 }
+
+\renewcommand\appendix{\par
+    \setcounter{chapter}{0}
+    \setcounter{section}{0}
+    \setcounter{subsection}{0}
+    \setcounter{figure}{0}
+    \setcounter{table}{0}
+    \setcounter{equation}{0}
+    \gdef\thesection{附录\Alph{section}} % 将附录节编号改为大写字母
+    \gdef\thefigure{\Alph{section}\ifnum\value{figure}<10 0\fi\arabic{figure}}
+    \gdef\thetable{\Alph{section}-\arabic{table}}
+    \gdef\theequation{\Alph{section}-\arabic{equation}}
+    \@addtoreset{figure}{section}
+    \@addtoreset{table}{section}
+    \@addtoreset{equation}{section}
+}
