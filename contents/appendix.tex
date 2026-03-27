@@ -1,29 +1,28 @@
 \chapter{\texorpdfstring{附\quad 录}{附录}} %这里多出来的代码是用来消除hyperref包引入的警告的，\texorpdfstring{}{}命令的作用是告诉hyperref包在生成PDF书签时使用第二个参数，而不是第一个参数中的特殊字符。
+
 \appendix
-\section{附录说明}
+
 附录的有无，根据毕业设计（论文）情况而定，内容一般包括正文内不便列出的冗长公式推导、辅助性数学工具、符号说明（含缩写）、计算程序及说明等。附录另起一页。附录依序用大写正体A、B、C…编序号，如：附录A。附录中的图、表、公式、参考文献等另行编序号，与正文分开，也一律用阿拉伯数字编码，但在数码前冠以附录序码，如：图A01、表B-2、公式（B-3）、文献[A5]等。“附录”两字之间空一个全角空格或两个半角空格，采用不编号章标题样式；内容应采用正文样式。
 
-\section{附录图片}
-附录图片编号测试。
+\section{格式演示}
+
 \begin{figure}[htbp]
     \centering\small
-    \includegraphics[width=8cm]{figures/晶体坐标系和样品坐标系示意图.jpg}
-    \caption{附录图片编号测试} \label{apfigtest}
+    \includegraphics[width=5.5cm]{figures/晶体坐标系和样品坐标系示意图.jpg}
+    \caption{晶体坐标系和样品坐标系示意图}
+    \label{apfig}
 \end{figure}
 
-从图\ref{apfigtest}可以看出......
+\vspace{-12pt}  %图片浮动体紧接着公式导致出现的空行，暂时用负值调整
 
-\section{附录公式}
-附录公式编号测试。
-\begin{equation}\label{apeqtest}
-    R=\frac{\Delta m}{m}
+\begin{equation}
+    \begin{cases}
+        F_{si} &= k_{si}(z'_i-z_i)+c_{si}(\dot{z}'_i-\dot{z}_i) \\
+        F_{ti} &= k_{ti}(z_i-y_i(x_i,t))+c_{ti}(\dot{z}_i-\dot{y}_i(x_i,t))
+    \end{cases}
+    \label{apequ}
 \end{equation}
 
-由公式（\ref{apeqtest}）可得：......
-
-\section{附录表格}
-
-附录表格编号测试。
 \begin{table}[!htb]
     \centering\zihao{5}
     \caption{\zihao{5}典型微尺度力学实验方法的基本信息}
@@ -40,15 +39,5 @@
     \end{tabular}
     \label{aptabtest}
 \end{table}
-
-由表\ref{aptabtest}可以看出......
-
-\section{附录代码}
-{\songti\textbf{以下是代码高亮的简单展示}}
-
-\begin{lstlisting}[language=Python,caption={Python示例代码},label={lst:test}]
-def hello():
-    print("Hello, world!")
-\end{lstlisting}
 
 \clearpage

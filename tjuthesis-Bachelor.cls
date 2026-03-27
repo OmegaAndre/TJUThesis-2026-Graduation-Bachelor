@@ -119,11 +119,8 @@
 % 定义一个新的分隔符：使用 \quad（1em 空格）
 \DeclareCaptionLabelSeparator{quadspace}{\quad}
 
-% 设置图注：字体为 small，分隔符用刚刚定义的 quadspace
-\captionsetup[figure]{font=small,labelsep=quadspace}
-
-% 同样设置表格注
-\captionsetup[table]{font=small,labelsep=quadspace}
+% 设置图注表注：字体为 small（5号字9pt），分隔符用刚刚定义的 quadspace
+\captionsetup{font=small,labelsep=quadspace}
 
 \renewcommand{\tablename}{表}                                     % 插表题头
 \renewcommand{\figurename}{图}                                    % 插图题头
@@ -136,7 +133,7 @@
   \begin{figure}[#1]
     \centering
     \includegraphics[width=#4\textwidth]{#2}
-    \caption{\zihao{5}#3}
+    \caption{#3}
     \label{fig:\thefigure}
   \end{figure}
 }
