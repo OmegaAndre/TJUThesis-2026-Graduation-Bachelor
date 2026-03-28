@@ -29,7 +29,7 @@
 % \RequirePackage{tabularx} % 表格自动换行
 % \RequirePackage{multirow} % 支持在表格中横跨多列
 
-\setmainfont{Times New Roman} 
+\setmainfont{Times New Roman}
 
 \if@songnumber
     \setsansfont{SimSun} %邪修大法修改参考文件序号为宋体之定义无衬线字体为宋体
@@ -41,8 +41,10 @@
 % 宋体、黑体伪粗体
 \setCJKfamilyfont{son}[AutoFakeBold={2}]{SimSun} 
 \renewcommand*{\songti}{\CJKfamily{son}}
+\newcommand{\songtibf}{\songti\textbf}
 \setCJKfamilyfont{hei}[AutoFakeBold={2}]{SimHei}
 \renewcommand*{\heiti}{\CJKfamily{hei}}
+\newcommand{\heitibf}{\heiti\textbf}
 
 \fancypagestyle{plain}{
     \fancyhf{}  % 清除所有页眉页脚重新设置
@@ -79,7 +81,7 @@
     chapter={
         format={\centering\zihao{-3}\heiti},    % 小三，黑体，居中
         number={\chinese{chapter}}, % 章节编号黑体中文数字
-        name={第,章},   % 章前缀
+        name={第,章},   % 章前后缀
         aftername=\quad, 
         beforeskip=30bp,    % 段前间距 （规定 30~36 bp 之间）
         afterskip=30bp,     % 段后间距 （规定 30~36 bp 之间）
@@ -91,6 +93,12 @@
         aftername=\quad,    % 编号与标题之间空格
     },
     subsection={
+        format={\zihao{4}\heiti},   % 四号黑体
+        beforeskip=12bp,    % 段前间距 （规定 12~15 bp 之间）
+        afterskip=12bp,     % 段后间距 （规定 12~15 bp 之间）
+        aftername=\quad,
+    },
+    subsubsection={ %单纯为了附录才有这个格式的设置
         format={\zihao{4}\heiti},   % 四号黑体
         beforeskip=12bp,    % 段前间距 （规定 12~15 bp 之间）
         afterskip=12bp,     % 段后间距 （规定 12~15 bp 之间）
@@ -129,13 +137,28 @@
 \renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}   % 使公式编号为 7-1 的格式
 % \newcommand{\ud}{\mathrm{d}} % 定义微分符号的命令，使用 upright 字体
 
-\newcommand{\figuremacro}[4]{
+\newcommand{\figuremacro}[5]{
   \begin{figure}[#1]
     \centering
     \includegraphics[width=#4\textwidth]{#2}
     \caption{#3}
-    \label{fig:\thefigure}
+    \label{#5}
   \end{figure}
+}
+
+\newcommand{\tablemacro}[5]{
+    \begin{table}[#1]
+    \centering
+    \caption{#2}\zihao{5}
+    \begin{tabular}{ccc}
+        \toprule
+        #3
+        \midrule
+        #4
+        \bottomrule
+    \end{tabular}
+    \label{#5}
+\end{table}
 }
 
 \addbibresource{reference.bib}
@@ -188,16 +211,16 @@
         \includegraphics[width=0.4\textwidth]{figures/tjuname.eps}
         
         \vspace{21pt}
-        \zihao{2}{\heiti\textbf{本科生毕业论文}}
+        \zihao{2}{\heitibf{本科生毕业论文}}
         \vfill
         \includegraphics[width=0.4\textwidth]{figures/tjulogo.eps}
 
         \vspace{20pt}
-        \zihao{3}{\heiti\textbf{题目：\@ctitle}}
+        \zihao{3}{\heitibf{题目：\@ctitle}}
 
         \vspace{30pt}
         \renewcommand{\arraystretch}{1.5}
-        {\zihao{3}\songti\textbf{
+        {\zihao{3}\songtibf{
             \begin{tabular}{lc} 
                 学\qquad 院 &  \underline{\makebox[\@info@width][c]{\@caffil}}     \\
                 专\qquad 业 &  \underline{\makebox[\@info@width][c]{\@csubject}}   \\
@@ -234,18 +257,19 @@
     \@ckeyworden
 }
 
-\renewcommand\appendix{\par
-    \setcounter{chapter}{0}
+\newenvironment{appendixenv}{%
     \setcounter{section}{0}
     \setcounter{subsection}{0}
     \setcounter{figure}{0}
     \setcounter{table}{0}
     \setcounter{equation}{0}
-    \gdef\thesection{附录\Alph{section}} % 将附录节编号改为大写字母
-    \gdef\thefigure{\Alph{section}\ifnum\value{figure}<10 0\fi\arabic{figure}}
-    \gdef\thetable{\Alph{section}-\arabic{table}}
-    \gdef\theequation{\Alph{section}-\arabic{equation}}
+    \def\thesection{附录\Alph{section}}
+    \def\thesubsection{\Alph{section}.\arabic{subsection}}
+    \def\thesubsubsection{\Alph{section}.\arabic{subsection}.\arabic{subsubsection}}
+    \def\thefigure{\Alph{section}\ifnum\value{figure}<10 0\fi\arabic{figure}}
+    \def\thetable{\Alph{section}-\arabic{table}}
+    \def\theequation{\Alph{section}-\arabic{equation}}
     \@addtoreset{figure}{section}
     \@addtoreset{table}{section}
     \@addtoreset{equation}{section}
-}
+}{}

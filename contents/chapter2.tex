@@ -74,11 +74,13 @@
             {figures/晶体坐标系和样品坐标系示意图.jpg}
             {晶体坐标系和样品坐标系示意图}
             {0.5}
+            {晶体}
 
 \figuremacro{htbp!}
             {figures/应变硅横截面样品的拉曼类硅峰峰位.png}
             {应变硅横截面样品的拉曼类硅峰峰位 \\ (a)  云图；(b)  沿深度方向分布曲线}
             {0.8}
+            {应变}
 
 \subsection{表}
 
@@ -86,22 +88,15 @@
 
 依照以上标准的三线表范例如下。
 
-\begin{table}[!htb]
-    \centering\zihao{5}
-    \caption{\zihao{5}典型微尺度力学实验方法的基本信息}
-    \begin{tabular}{ccc}
-        \toprule
-        \songti\textbf{实验方法} & \songti\textbf{主要测量对象} & \songti\textbf{空间分辨率} \\
-        \midrule
-        原子力显微镜 & 表面力 & $0.1 nm$\cite{Zhang2002} \\
-        透射电镜 & 晶格结构、位错 & $0.1 nm$\cite{Borko1978} \\
-        X射线衍射 & 应变 & $1 \mu m$\cite{Hao2008,Dupont1974,Wang1997} \\
-        同步辐射 & 内部三维结构与变形 & 约$100 nm$\cite{Liang2024,Koya1995} \\
-        显微拉曼 & 应变 & $250 nm$\cite{Deng2006} \\
-        \bottomrule
-    \end{tabular}
-    \label{tab:test}
-\end{table}
+\tablemacro{htbp}
+            {典型微尺度力学实验方法的基本信息}
+            {\songtibf{实验方法} & \songtibf{主要测量对象} & \songtibf{空间分辨率} \\}
+            {原子力显微镜 & 表面力 & $0.1 nm$\cite{Zhang2002} \\
+            透射电镜 & 晶格结构、位错 & $0.1 nm$\cite{Borko1978} \\
+            X射线衍射 & 应变 & $1 \mu m$\cite{Hao2008,Dupont1974,Wang1997} \\
+            同步辐射 & 内部三维结构与变形 & 约$100 nm$\cite{Liang2024,Koya1995} \\
+            显微拉曼 & 应变 & $250 nm$\cite{Deng2006} \\}
+            {基本信息}
 
 \clearpage %为了与原模板分页保持一致添加，实际使用不需要
 
