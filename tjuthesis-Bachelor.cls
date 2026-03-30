@@ -25,7 +25,7 @@
 \RequirePackage{xcolor}     %提供颜色支持的宏包
 \RequirePackage{listings}   %用于设置代码块样式的宏包
 \RequirePackage[style=gb7714-2015]{biblatex}    %参考文献管理的宏包，使用GB/T 7714-2015标准
-% \RequirePackage{mathtools}%基础数学包基础上增加额外命令
+% \RequirePackage{mathtools}%基础数学包基础上增加额外命令，通常和amsmath二选一
 % \RequirePackage{tabularx} %表格自动换行
 % \RequirePackage{multirow} %支持在表格中横跨多列
 
@@ -135,7 +135,8 @@
 \renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}       % 使图编号为 7-1 的格式 %\protect{~}
 \renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}         % 使表编号为 7-1 的格式
 \renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}   % 使公式编号为 7-1 的格式
-% \newcommand{\ud}{\mathrm{d}} % 定义微分符号的命令，使用 upright 字体
+
+\graphicspath{{figures/}}   % 定义所有的图像文件在 figures 子目录下
 
 \newcommand{\figuremacro}[5]{ %图片插入宏
   \begin{figure}[#1] %第一个参数是浮动体样式设置
@@ -208,12 +209,12 @@
     \begin{titlepage}
         \thispagestyle{empty} %封面页无页眉页脚
         \centering
-        \includegraphics[width=0.4\textwidth]{figures/tjuname.eps} %插入天津大学校名
+        \includegraphics[width=0.4\textwidth]{tjuname.eps} %插入天津大学校名
         
         \vspace{21pt}
         \zihao{2}{\heitibf{本科生毕业论文}}
         \vfill %动态填充空隙
-        \includegraphics[width=0.4\textwidth]{figures/tjulogo.eps} %插入天津大学校徽
+        \includegraphics[width=0.4\textwidth]{tjulogo.eps} %插入天津大学校徽
 
         \vspace{20pt}
         \zihao{3}{\heitibf{题目：\@ctitle}}
