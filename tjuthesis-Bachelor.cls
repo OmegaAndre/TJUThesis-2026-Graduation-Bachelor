@@ -14,6 +14,7 @@
 \RequirePackage{fancyhdr}   %用于设置页眉页脚的宏包
 \RequirePackage{titletoc}   %用于设置目录样式的宏包
 \RequirePackage{graphicx}   %支持插图处理的宏包
+\RequirePackage[percent]{overpic}
 \RequirePackage{pdfpages}   %用于插入pdf文件的宏包
 \RequirePackage{pifont}     %提供特殊符号的宏包（如 \ding{173} 代表圈1）
 \RequirePackage{booktabs}   %用于绘制三线表的横线
@@ -24,16 +25,17 @@
 \RequirePackage{caption}    %用于设置图表标题样式的宏包
 \RequirePackage{xcolor}     %提供颜色支持的宏包
 \RequirePackage{listings}   %用于设置代码块样式的宏包
-\RequirePackage[style=gb7714-2015]{biblatex}    %参考文献管理的宏包，使用GB/T 7714-2015标准
+\RequirePackage[style=gb7714-2015, gbnamefmt=lowercase]{biblatex}    %参考文献管理的宏包，使用GB/T 7714-2015标准
 % \RequirePackage{mathtools}%基础数学包基础上增加额外命令，通常和amsmath二选一
 % \RequirePackage{tabularx} %表格自动换行
 % \RequirePackage{multirow} %支持在表格中横跨多列
 
+\newfontfamily\tocnumfont{SimHei}
 \setmainfont{Times New Roman}   %设置西文字体为新罗马字体
 \setmonofont{SimHei}    %设置等宽字体为黑体（依旧邪修大法用来修改标题序号数字字体）
 
 \if@songnumber
-    \setsansfont{SimSun}    %邪修大法修改参考文件序号为宋体之定义无衬线字体为宋体
+    \setsansfont{SimSun} %邪修大法修改参考文件序号为宋体之定义无衬线字体为宋体
     \DeclareFieldFormat{labelnumberwidth}{
     {\sffamily\mkbibbrackets{#1}}   %使用自定义的无衬线字体命令
     } %邪修大法修改参考文件序号为宋体之使用无衬线字体命令
@@ -96,14 +98,14 @@
     },
     subsection={
         format={\zihao{4}\heiti},   % 四号黑体
-        numberformat={\zihao{4}\ttfamily},   % 邪修大法之章节编号数字使用黑体
+        numberformat={\zihao{4}\ttfamily}, 
         beforeskip=12bp,    % 段前间距 （规定 12~15 bp 之间）
         afterskip=12bp,     % 段后间距 （规定 12~15 bp 之间）
         aftername=\quad,
     },
     subsubsection={ %单纯为了附录才有这个格式的设置
         format={\zihao{4}\heiti},   % 四号黑体
-        numberformat={\zihao{4}\ttfamily},   % 邪修大法之章节编号数字使用黑体
+        numberformat={\zihao{4}\ttfamily}, 
         beforeskip=12bp,    % 段前间距 （规定 12~15 bp 之间）
         afterskip=12bp,     % 段后间距 （规定 12~15 bp 之间）
         aftername=\quad,
@@ -116,18 +118,29 @@
     [0em]   % 缩进为 0em = 0 字符
     {\heiti\zihao{-4}\setlength{\baselineskip}{1.2\baselineskip}}   %黑体小四，行距1.2倍（这里是latex的行距）
     {\thecontentslabel\quad}{}
-    {\hspace{.5em}\titlerule*[5bp]{.}\zihao{-4}\contentspage}
+    {\hspace{.5em}\titlerule*[5bp]{.}\zihao{-4}\contentspage} %
 \titlecontents{section}
     [2em]   % 缩进为 2em = 4 字符
     {\zihao{-4}\setlength{\baselineskip}{1.2\baselineskip}}
-    {\thecontentslabel\quad}{}
+    {{\tocnumfont\bfseries\thecontentslabel}\quad}{}
     {\hspace{.5em}\titlerule*[5bp]{.}\zihao{-4}\contentspage}
 \titlecontents{subsection}
     [4em]   % 缩进为 4em = 4 字符
     {\zihao{-4}\setlength{\baselineskip}{1.2\baselineskip}}
-    {\thecontentslabel\quad}{}
+    {{\tocnumfont\bfseries\thecontentslabel}\quad}{}
     {\hspace{.5em}\titlerule*[5bp]{.}\zihao{-4}\contentspage}
 
+% 定义一个新的分隔符：使用 \quad（1em 空格）
+\DeclareCaptionLabelSeparator{quadspace}{\quad}
+
+% 设置图注表注：字体为 small（5号字9pt），分隔符用刚刚定义的 quadspace
+\captionsetup{font=small,labelsep=quadspace}
+
+\DeclareCaptionLabelFormat{codelabel}{代码~\arabic{chapter}-\arabic{lstlisting}}
+\captionsetup[lstlisting]{
+	labelformat=codelabel,
+	labelsep=quadspace
+}
 \renewcommand{\tablename}{表}                                     % 插表题头
 \renewcommand{\figurename}{图}                                    % 插图题头
 \renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}       % 使图编号为 7-1 的格式 %\protect{~}
@@ -149,13 +162,14 @@
 	\begin{table}[#1]
 		\centering
 		\caption{#2}\zihao{5} % 设置表格内容为五号字
-		\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}#3}
+		%\begin{tabular}{#3} 
+		\begin{tabular}{#3}
 			\toprule
-			#4 % 表头内容
+			#4 % 表头内容，末尾记得加换行
 			\midrule
 			#5 % 表格主体
 			\bottomrule
-		\end{tabular*}
+		\end{tabular}
 		\label{#6}
 	\end{table}
 }
@@ -165,7 +179,7 @@
 \lstset{ %一个简单的代码高亮样式设置
     basicstyle=\ttfamily\small,
     numbers=left,
-    numberstyle=\tiny,
+    numberstyle=\scriptsize,
     stepnumber=1,
     numbersep=8pt,
     frame=single,
@@ -181,7 +195,7 @@
     keywordstyle=\color{blue},
     commentstyle=\color{green!50!black},
     stringstyle=\color{red!60!black},
-    backgroundcolor=\color{gray!5},
+    backgroundcolor=\color{white},
     captionpos=b
 }
 
@@ -262,13 +276,17 @@
     \setcounter{figure}{0}
     \setcounter{table}{0}
     \setcounter{equation}{0}
+    \setcounter{lstlisting}{0}
     \def\thesection{\heiti{附录}\Alph{section}}
     \def\thesubsection{\Alph{section}.\arabic{subsection}}
     \def\thesubsubsection{\Alph{section}.\arabic{subsection}.\arabic{subsubsection}}
     \def\thefigure{\Alph{section}\ifnum\value{figure}<10 0\fi\arabic{figure}}
     \def\thetable{\Alph{section}-\arabic{table}}
     \def\theequation{\Alph{section}-\arabic{equation}}
+    \def\thelstlisting{\Alph{section}-\arabic{lstlisting}}
     \@addtoreset{figure}{section}
     \@addtoreset{table}{section}
     \@addtoreset{equation}{section}
+    \@addtoreset{lstlisting}{section}
 }{}
+
