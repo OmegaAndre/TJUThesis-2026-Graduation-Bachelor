@@ -42,7 +42,7 @@
 
 使用方法:
 
-1. 在 Github 页面的 Release 部分下载最新的打包文件，解压后将文件夹打开至IDE即可编译。
+1. 在 Github 页面的 Release 部分下载最新的打包文件，解压后将文件夹打开至IDE即可编译（一些较小的修改以及bug修复没有来得及打包，可以直接下载仓库源码获得最新版本）。
 
 2. 基本信息填写：在 contents/introduction.tex 文件中，找到 `\ctitle`、`\cauthor`、`\cnumber`、`\csupervisor` 等命令，填写你的论文题目、姓名、学号、导师等信息，同样在该文件中填写中英文摘要和关键词。
 

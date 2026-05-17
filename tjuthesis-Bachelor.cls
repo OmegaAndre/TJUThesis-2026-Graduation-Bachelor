@@ -4,7 +4,7 @@
 \ProcessOptions*    %这部分用于读取给类文件传入的参数
 
 \ProvidesClass{tjuthesis-Bachelor}  %定义类文件名称
-\LoadClass[12pt,openany,oneside]{ctexbook}  %以 ctexbook 为基础类，设置默认选项为 12pt 字体、openany（章节可以从任意页开始）和 oneside（单面打印）
+\LoadClass[zihao=-4,openany,oneside]{ctexbook}  %以 ctexbook 为基础类，设置默认大小为小四、openany（章节可以从任意页开始）和 oneside（单面打印）
 
 \RequirePackage[a4paper,
             left=3.57cm,right=2.77cm,
@@ -22,7 +22,7 @@
 \RequirePackage{amsfonts}   %支持公式中使用特殊字体
 \RequirePackage[hidelinks]{hyperref}    % 将交叉引用设置为超链接
 \RequirePackage{newtxmath}  % 新罗马风格数学公式字体
-\RequirePackage{caption}    %用于设置图表标题样式的宏包
+\RequirePackage[font=small]{caption}    %用于设置图表标题样式的宏包
 \RequirePackage{xcolor}     %提供颜色支持的宏包
 \RequirePackage{listings}   %用于设置代码块样式的宏包
 \RequirePackage[style=gb7714-2015, gbnamefmt=lowercase]{biblatex}    %参考文献管理的宏包，使用GB/T 7714-2015标准
@@ -147,6 +147,9 @@
 \renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}         % 使表编号为 7-1 的格式
 \renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}   % 使公式编号为 7-1 的格式
 
+\captionsetup[table]{labelsep=quad} %表注修改为全角空格
+\captionsetup[figure]{labelsep=quad} %图注修改为全角空格
+
 \graphicspath{{figures/}}   % 定义所有的图像文件在 figures 子目录下
 
 \newcommand{\figuremacro}[5]{ %图片插入宏
@@ -158,21 +161,36 @@
   \end{figure}
 }
 
-\newcommand{\tablemacro}[6]{ % 表格插入宏
-	\begin{table}[#1]
-		\centering
-		\caption{#2}\zihao{5} % 设置表格内容为五号字
-		%\begin{tabular}{#3} 
-		\begin{tabular}{#3}
-			\toprule
-			#4 % 表头内容，末尾记得加换行
-			\midrule
-			#5 % 表格主体
-			\bottomrule
-		\end{tabular}
-		\label{#6}
-	\end{table}
+\newcommand{\tablemacro}[6]{ %表格插入宏
+    \begin{table}[#1] %第一个参数是浮动体样式设置
+    \centering
+    \caption{#2}\zihao{5} %第二个参数是表格标题
+    \begin{tabular}{#3}
+        \toprule
+        #4 %第三个参数是表格列标题，需要手动使用\songtibf加粗
+        \midrule
+        #5 %第四个参数是表格内容
+        \bottomrule
+    \end{tabular}
+    \label{#6} %第五个参数是表格标签
+\end{table}
 }
+
+% \newcommand{\tablemacrofw}[6]{ %页面全宽表格插入宏
+%     \begin{table}[#1] %第一个参数是浮动体样式设置
+%     \centering
+%     \caption{#2}\zihao{5} %第二个参数是表格标题
+%     \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}#3}
+%         \toprule
+%         #4 %第三个参数是表格列标题，需要手动使用\songtibf加粗
+%         \midrule
+%         #5 %第四个参数是表格内容
+%         \bottomrule
+%     \end{tabular*}
+%     \label{#6} %第五个参数是表格标签
+% \end{table}
+% }
+
 
 \addbibresource{reference.bib} %添加参考文献数据库文件
 
