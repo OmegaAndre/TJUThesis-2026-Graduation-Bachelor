@@ -30,7 +30,6 @@
 % \RequirePackage{tabularx} %表格自动换行
 % \RequirePackage{multirow} %支持在表格中横跨多列
 
-\newfontfamily\tocnumfont{SimHei}
 \setmainfont{Times New Roman}   %设置西文字体为新罗马字体
 \setmonofont{SimHei}    %设置等宽字体为黑体（依旧邪修大法用来修改标题序号数字字体）
 
@@ -114,33 +113,23 @@
 
 \addtocontents{toc}{\protect\thispagestyle{noheader}}   % 设置目录页的页眉页脚样式为 noheader 
 \setcounter{tocdepth}{2}    % 设置 tocdepth 目录深度 （2 = subsection，即三级标题）
+
 \titlecontents{chapter}
     [0em]   % 缩进为 0em = 0 字符
     {\heiti\zihao{-4}\setlength{\baselineskip}{1.2\baselineskip}}   %黑体小四，行距1.2倍（这里是latex的行距）
     {\thecontentslabel\quad}{}
-    {\hspace{.5em}\titlerule*[5bp]{.}\zihao{-4}\contentspage} %
+    {\hspace{.5em}\titlerule*[5bp]{.}\zihao{-4}\contentspage}
 \titlecontents{section}
     [2em]   % 缩进为 2em = 4 字符
     {\zihao{-4}\setlength{\baselineskip}{1.2\baselineskip}}
-    {{\tocnumfont\bfseries\thecontentslabel}\quad}{}
+    {\thecontentslabel\quad}{}
     {\hspace{.5em}\titlerule*[5bp]{.}\zihao{-4}\contentspage}
 \titlecontents{subsection}
     [4em]   % 缩进为 4em = 4 字符
     {\zihao{-4}\setlength{\baselineskip}{1.2\baselineskip}}
-    {{\tocnumfont\bfseries\thecontentslabel}\quad}{}
+    {\thecontentslabel\quad}{}
     {\hspace{.5em}\titlerule*[5bp]{.}\zihao{-4}\contentspage}
 
-% 定义一个新的分隔符：使用 \quad（1em 空格）
-\DeclareCaptionLabelSeparator{quadspace}{\quad}
-
-% 设置图注表注：字体为 small（5号字9pt），分隔符用刚刚定义的 quadspace
-\captionsetup{font=small,labelsep=quadspace}
-
-\DeclareCaptionLabelFormat{codelabel}{代码~\arabic{chapter}-\arabic{lstlisting}}
-\captionsetup[lstlisting]{
-	labelformat=codelabel,
-	labelsep=quadspace
-}
 \renewcommand{\tablename}{表}                                     % 插表题头
 \renewcommand{\figurename}{图}                                    % 插图题头
 \renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}       % 使图编号为 7-1 的格式 %\protect{~}
