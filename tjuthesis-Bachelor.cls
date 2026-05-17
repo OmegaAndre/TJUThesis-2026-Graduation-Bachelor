@@ -4,7 +4,7 @@
 \ProcessOptions*    %这部分用于读取给类文件传入的参数
 
 \ProvidesClass{tjuthesis-Bachelor}  %定义类文件名称
-\LoadClass[12pt,openany,oneside]{ctexbook}  %以 ctexbook 为基础类，设置默认选项为 12pt 字体、openany（章节可以从任意页开始）和 oneside（单面打印）
+\LoadClass[zihao=-4,openany,oneside]{ctexbook}  %以 ctexbook 为基础类，设置默认大小为小四、openany（章节可以从任意页开始）和 oneside（单面打印）
 
 \RequirePackage[a4paper,
             left=3.57cm,right=2.77cm,
